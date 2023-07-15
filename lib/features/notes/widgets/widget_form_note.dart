@@ -48,7 +48,7 @@ class _WidgetFormNoteState extends State<WidgetFormNote> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
+    // ignore: unused_local_variable ........
     late Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
