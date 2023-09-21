@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.notebook">
+    package="com.maurisoft.notebook">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="notebook"
         android:name="${applicationName}"

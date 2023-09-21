@@ -42,6 +42,8 @@ class WidgetHeaderNote extends StatelessWidget {
       if (state is ReadNoteState) {
         print("Ui header dele");
         return state.isListNoteEmpty ? Container() : _buttonDelete(context);
+      } else if (state is SelectedNoteState || state is ModeDeleteNoteState) {
+        return Container();
       } else {
         return _buttonDelete(context);
       }
@@ -56,14 +58,20 @@ class WidgetHeaderNote extends StatelessWidget {
         });
   }
 
-  CustomIconButton _buttonAddNote(BuildContext context) {
-    return CustomIconButton(
-        iconData: AppIcons.add_icon,
-        onpressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return const WidgetFormNote();
-          }));
-        });
+  BlocBuilder<NoteBloc, NoteState> _buttonAddNote(BuildContext context) {
+    return BlocBuilder<NoteBloc, NoteState>(builder: (context, state) {
+      if (state is SelectedNoteState || state is ModeDeleteNoteState) {
+        return Container();
+      } else {
+        return CustomIconButton(
+            iconData: AppIcons.add_icon,
+            onpressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return const WidgetFormNote();
+              }));
+            });
+      }
+    });
   }
 
   BlocBuilder<NoteBloc, NoteState> _buttonCancel() {
@@ -75,8 +83,9 @@ class WidgetHeaderNote extends StatelessWidget {
           },
           iconData: Icons.cancel,
         );
+      } else {
+        return Container();
       }
-      return Container();
     });
   }
 }
